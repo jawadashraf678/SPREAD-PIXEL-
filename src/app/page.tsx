@@ -1011,11 +1011,11 @@ export default function Home() {
                         }}
                         className="portfolio-card-inner"
                       >
-                        <div style={{ position: 'relative', width: '100%', height: '280px', overflow: 'hidden' }}>
+                        <div style={{ position: 'relative', width: '100%', height: 'auto', overflow: 'hidden' }}>
                           <img
                             src={item.img}
                             alt={`${item.title} Mockup`}
-                            style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }}
+                            style={{ width: '100%', height: 'auto', display: 'block', transition: 'transform 0.5s ease' }}
                             className="portfolio-img"
                           />
                         </div>
