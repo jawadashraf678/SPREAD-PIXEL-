@@ -997,7 +997,7 @@ export default function Home() {
                       href={item.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      style={{ display: 'block', textDecoration: 'none', flex: '1.2', minWidth: '290px' }}
+                      style={{ display: 'block', textDecoration: 'none', flex: '1.2', width: '100%' }}
                       className="portfolio-link-card"
                     >
                       <div
@@ -1023,7 +1023,7 @@ export default function Home() {
                     </a>
 
                     {/* Description Text */}
-                    <div style={{ flex: '1', minWidth: '290px', textAlign: 'left' }} className="portfolio-desc">
+                    <div style={{ flex: '1', width: '100%', textAlign: 'left' }} className="portfolio-desc">
                       <h3 style={{ fontSize: '2rem', marginBottom: '16px', color: 'var(--text-primary)', fontFamily: 'var(--font-headings)' }}>
                         {item.title}
                       </h3>
@@ -1108,7 +1108,7 @@ export default function Home() {
               Ek message ki baat hai. Baaki hum sambhal lete hain.
             </div>
 
-            <div style={{
+            <div className="enquiry-form-card" style={{
               display: 'flex',
               flexDirection: 'column',
               gap: '24px',
@@ -1247,6 +1247,9 @@ export default function Home() {
           .niche-item {
             justify-content: flex-start !important;
             text-align: left !important;
+          }
+          .enquiry-form-card {
+            padding: 24px 18px !important;
           }
         }
       `}</style>
