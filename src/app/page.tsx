@@ -287,7 +287,7 @@ export default function Home() {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              margin: '16px auto 24px auto',
+              margin: '16px auto 10px auto',
               maxWidth: '360px',
               width: '80%'
             }}>
