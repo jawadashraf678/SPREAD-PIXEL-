@@ -1244,6 +1244,10 @@ export default function Home() {
           .portfolio-desc {
             text-align: center !important;
           }
+          .niche-item {
+            justify-content: flex-start !important;
+            text-align: left !important;
+          }
         }
       `}</style>
     </>
