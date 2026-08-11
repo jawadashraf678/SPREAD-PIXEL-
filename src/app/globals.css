@@ -141,7 +141,7 @@ p {
 .section-container {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 24px 24px;
+  padding: 110px 24px;
   position: relative;
   z-index: 1;
 }
@@ -607,13 +607,13 @@ p {
   position: fixed;
   width: 8px;
   height: 8px;
-  background-color: #ff007f; /* magenta/pink */
+  background-color: var(--accent-orange);
   border-radius: 50%;
   pointer-events: none;
   z-index: 99999;
   transform: translate(-50%, -50%);
   transition: transform 0.1s cubic-bezier(0.25, 1, 0.5, 1), left 0.1s cubic-bezier(0.25, 1, 0.5, 1), top 0.1s cubic-bezier(0.25, 1, 0.5, 1);
-  box-shadow: 0 0 10px #ff007f, 0 0 20px #ff007f, 0 0 30px #ff007f;
+  box-shadow: 0 0 10px var(--accent-orange), 0 0 20px var(--accent-orange), 0 0 30px var(--accent-orange);
   will-change: left, top;
 }
 
@@ -832,7 +832,7 @@ section a[href="#packages"]:hover::after {
 
   /* Containers & Padding */
   .section-container {
-    padding: 28px 16px !important;
+    padding: 70px 16px !important;
   }
   
   /* Cards Spacing */

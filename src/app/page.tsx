@@ -55,10 +55,15 @@ export default function Home() {
               const leftHeight = leftCol.getBoundingClientRect().height;
               const maxTravel = rightHeight - leftHeight;
               
-              const totalHeight = windowHeight + rect.height;
-              const progress = (windowHeight - rect.top) / totalHeight;
-              const translateVal = (progress - 0.5) * maxTravel * 3.0;
-              nichesLeftRef.current.style.transform = `translateY(${translateVal}px)`;
+              if (maxTravel > 0) {
+                const scrolled = 140 - rect.top;
+                let translateVal = 0;
+                if (scrolled > 0) {
+                  // Drift downwards at 75% of the scroll speed, capped at maxTravel
+                  translateVal = Math.min(scrolled * 0.75, maxTravel);
+                }
+                leftCol.style.transform = `translateY(${translateVal}px)`;
+              }
             }
           }
         } else {
@@ -140,6 +145,45 @@ export default function Home() {
     }
   ];
 
+  const portfolioItems = [
+    {
+      title: "Faseeh Lall",
+      desc: "Premium Creative Portfolio & Agency Build",
+      img: "/faseehlall_mockup.png",
+      url: "https://www.faseehlall.com/"
+    },
+    {
+      title: "Online Quran College",
+      desc: "Clean Educational Portal & Student Dashboard",
+      img: "/quran_college_mockup.png",
+      url: "https://www.onlinequrancollege.com/"
+    },
+    {
+      title: "Unique Mineral",
+      desc: "E-Commerce Showcase for Minerals & Marble Export",
+      img: "/unique_mineral_mockup.png",
+      url: "https://unique-mineral.vercel.app/"
+    },
+    {
+      title: "Unizconnect 1-on-1",
+      desc: "High-Converting Interactive Mentoring Portal",
+      img: "/unizconnect_mockup.png",
+      url: "https://1on1.unizconnect.com/"
+    },
+    {
+      title: "ZeroX Agency",
+      desc: "Advanced AI Automation Systems & Scheduling Portal",
+      img: "/zerox_mockup.png",
+      url: "https://meet.zerox.agency/"
+    },
+    {
+      title: "SpreadPixel",
+      desc: "Bold Creative Design & High-Impact Brand Showcase",
+      img: "/spreadpixel_mockup.png",
+      url: "https://spreadpixel.com/"
+    }
+  ];
+
   const niches = [
     "Clinics & Dental Practices", "Real Estate Agencies", "Law & Tax Consultants",
     "Schools & Academies", "Salons & Spas", "Construction & Interior Firms",
@@ -163,25 +207,25 @@ export default function Home() {
             <img 
               src="/spreadpixels_logo.png" 
               alt="SpreadPixels Marketing Agency Logo" 
-              style={{ height: '150px', width: 'auto', display: 'block' }} 
+              style={{ height: '90px', width: 'auto', display: 'block' }} 
             />
           </div>
           <nav style={{ display: 'flex', gap: '20px', alignItems: 'center' }} className="desktop-nav">
-            <a href="#problem" style={{ color: 'var(--text-secondary)', fontSize: '0.8rem', fontWeight: 600, textTransform: 'uppercase', textDecoration: 'none', letterSpacing: '0.05em' }}>(Problem)</a>
-            <a href="#who-this-is-for" style={{ color: 'var(--text-secondary)', fontSize: '0.8rem', fontWeight: 600, textTransform: 'uppercase', textDecoration: 'none', letterSpacing: '0.05em' }}>(Who We Serve)</a>
-            <a href="#what-you-get" style={{ color: 'var(--text-secondary)', fontSize: '0.8rem', fontWeight: 600, textTransform: 'uppercase', textDecoration: 'none', letterSpacing: '0.05em' }}>(Services)</a>
-            <a href="#contact" style={{ color: 'var(--text-secondary)', fontSize: '0.8rem', fontWeight: 600, textTransform: 'uppercase', textDecoration: 'none', letterSpacing: '0.05em' }}>(Packages)</a>
-            <a href="#faq" style={{ color: 'var(--text-secondary)', fontSize: '0.8rem', fontWeight: 600, textTransform: 'uppercase', textDecoration: 'none', letterSpacing: '0.05em' }}>(FAQs)</a>
+            <a href="#problem" style={{ color: 'var(--text-secondary)', fontSize: '0.8rem', fontWeight: 600, textTransform: 'uppercase', textDecoration: 'none', letterSpacing: '0.05em' }}>Problem</a>
+            <a href="#who-this-is-for" style={{ color: 'var(--text-secondary)', fontSize: '0.8rem', fontWeight: 600, textTransform: 'uppercase', textDecoration: 'none', letterSpacing: '0.05em' }}>Who We Serve</a>
+            <a href="#what-you-get" style={{ color: 'var(--text-secondary)', fontSize: '0.8rem', fontWeight: 600, textTransform: 'uppercase', textDecoration: 'none', letterSpacing: '0.05em' }}>Services</a>
+            <a href="#contact" style={{ color: 'var(--text-secondary)', fontSize: '0.8rem', fontWeight: 600, textTransform: 'uppercase', textDecoration: 'none', letterSpacing: '0.05em' }}>Packages</a>
+            <a href="#faq" style={{ color: 'var(--text-secondary)', fontSize: '0.8rem', fontWeight: 600, textTransform: 'uppercase', textDecoration: 'none', letterSpacing: '0.05em' }}>FAQs</a>
           </nav>
           <a
             href="#contact"
             style={{ color: 'var(--accent-orange)', fontSize: '0.85rem', fontWeight: 700, textTransform: 'uppercase', textDecoration: 'none', letterSpacing: '0.05em' }}
           >
-            (Let's Talk)
+            Let's Talk
           </a>
         </div>
       </header>
-
+ 
       <main style={{ position: 'relative' }}>
         {/* Glow Effects */}
         <div className="gradient-glow" style={{ top: '10%', left: '5%' }}></div>
@@ -197,133 +241,161 @@ export default function Home() {
           flexDirection: 'column', 
           justifyContent: 'center', 
           alignItems: 'center', 
-          padding: '12px 0',
+          padding: '0',
           background: 'transparent'
         }}>
-          <div className="section-container" style={{ textAlign: 'center', position: 'relative', zIndex: 2, width: '100%' }}>
-            <div className="badge hero-animate hero-delay-1" style={{ marginBottom: '24px' }}>Pakistani Businesses Only</div>
+          <div className="section-container" style={{ textAlign: 'center', position: 'relative', zIndex: 2, width: '100%', paddingTop: '20px', paddingBottom: '40px' }}>
+            <div className="badge hero-animate hero-delay-1" style={{ marginBottom: '24px' }}>PAKISTANI BUSINESSES ONLY</div>
             
             {/* Kyne Style Heading Box */}
             <div style={{
               position: 'relative',
               display: 'inline-block',
               margin: '0 auto 10px auto',
-              textAlign: 'left',
+              textAlign: 'center',
               padding: '20px 40px',
               maxWidth: '960px',
               width: '100%'
             }} className="hero-box-container hero-animate hero-delay-2">
               
               {/* Corner Sparkle Icons */}
-              <div style={{ position: 'absolute', top: '0px', left: '0px', color: 'var(--text-muted)', opacity: 0.6, fontSize: '1.25rem', userSelect: 'none' }}>✦</div>
-              <div style={{ position: 'absolute', top: '0px', right: '0px', color: 'var(--text-muted)', opacity: 0.6, fontSize: '1.25rem', userSelect: 'none' }}>＋</div>
-              <div style={{ position: 'absolute', bottom: '0px', left: '0px', color: 'var(--text-muted)', opacity: 0.6, fontSize: '1.25rem', userSelect: 'none' }}>✣</div>
-              <div style={{ position: 'absolute', bottom: '0px', right: '0px', color: 'var(--text-muted)', opacity: 0.6, fontSize: '1.25rem', userSelect: 'none' }}>✛</div>
+              <div style={{ position: 'absolute', top: '10px', left: '10px', color: 'var(--text-muted)', opacity: 0.4, fontSize: '1.25rem', userSelect: 'none' }}>✦</div>
+              <div style={{ position: 'absolute', bottom: '10px', left: '10px', color: 'var(--text-muted)', opacity: 0.4, fontSize: '1.25rem', userSelect: 'none' }}>＋</div>
+              <div style={{ position: 'absolute', bottom: '10px', right: '10px', color: 'var(--text-muted)', opacity: 0.4, fontSize: '1.25rem', userSelect: 'none' }}>＋</div>
 
-              {/* Floating Badge Image (Overlapping headline top-right) */}
-              <div style={{
-                position: 'absolute',
-                top: '-45px',
-                right: '0px',
-                width: '110px',
-                height: '110px',
-                borderRadius: '20px',
-                overflow: 'hidden',
-                transform: 'rotate(6deg)',
-                boxShadow: '0 12px 36px rgba(0,0,0,0.08)',
-                border: '3px solid var(--bg-primary)',
-                zIndex: 5
-              }} className="hero-floating-badge floating-ambient">
-                <img 
-                  src="/hero_badge.png" 
-                  alt="Creative Design Badge" 
-                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                />
-              </div>
+
 
               {/* Serif Headline */}
               <h1 style={{
                 fontFamily: 'var(--font-headings)',
-                fontSize: 'clamp(3.2rem, 8.5vw, 7.5rem)',
-                lineHeight: '1.0',
-                fontWeight: 300,
+                fontSize: 'clamp(3rem, 7.5vw, 6.5rem)',
+                lineHeight: '1.1',
+                fontWeight: 450,
                 color: 'var(--text-primary)',
                 letterSpacing: '-0.04em',
-                margin: 0
+                margin: 0,
+                textAlign: 'center'
               }}>
                 hi, we build <br />
-                <span style={{ fontStyle: 'italic', fontWeight: 400, color: 'var(--accent-orange)' }}>High-Converting</span> <br />
+                <span style={{ fontStyle: 'italic', fontWeight: 500, color: 'var(--accent-orange)' }}>High-Converting</span> <br />
                 <span style={{ fontWeight: 800 }}>Websites.</span>
               </h1>
             </div>
 
+            {/* Divider line with diamond */}
+            <div className="hero-animate hero-delay-3" style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              margin: '16px auto 24px auto',
+              maxWidth: '360px',
+              width: '80%'
+            }}>
+              <div style={{ flex: 1, height: '1px', background: 'linear-gradient(to right, transparent, var(--border-color))' }}></div>
+              <div style={{ margin: '0 12px', color: 'var(--accent-orange)', fontSize: '8px' }}>◆</div>
+              <div style={{ flex: 1, height: '1px', background: 'linear-gradient(to left, transparent, var(--border-color))' }}></div>
+            </div>
+
             {/* Subheading Body Text */}
             <p className="hero-animate hero-delay-3" style={{
-              fontSize: 'clamp(1.05rem, 1.8vw, 1.2rem)',
+              fontSize: 'clamp(1rem, 1.6vw, 1.25rem)',
               maxWidth: '750px',
-              margin: '0 auto 10px auto',
+              margin: '0 auto 28px auto',
               color: 'var(--text-secondary)',
-              lineHeight: '1.6',
+              lineHeight: '1.5',
               textAlign: 'center'
             }}>
-              If the answer is none, or you have no idea, the problem is not your business. It is a website that was built to look good instead of built to sell. We build websites for Pakistani businesses that need customers, not decoration.
+              Strategic websites that turn visitors into customers.<br />
+              Designed for Pakistani businesses. Built for real results.
             </p>
 
             {/* Action Buttons */}
             <div className="hero-animate hero-delay-4" style={{
               display: 'flex',
               flexWrap: 'wrap',
-              gap: '24px',
+              gap: '16px',
               justifyContent: 'center',
               alignItems: 'center',
-              marginBottom: '20px'
+              marginBottom: '28px'
             }}>
               <a
-                href="#contact"
+                href="https://wa.me/923316049421?text=Salam,%20I%20want%20to%20discuss%20a%20website%20packages%20and%20enquiry."
+                target="_blank"
+                rel="noopener noreferrer"
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '8px',
-                  color: 'var(--accent-orange)',
-                  fontSize: '1rem',
-                  fontWeight: 700,
+                  backgroundColor: 'var(--accent-orange)',
+                  color: 'white',
                   textTransform: 'uppercase',
+                  fontSize: '0.85rem',
+                  fontWeight: 700,
+                  letterSpacing: '0.05em',
+                  padding: '16px 28px',
+                  borderRadius: '10px',
                   textDecoration: 'none',
-                  letterSpacing: '0.05em'
+                  transition: 'all 0.3s ease',
+                  boxShadow: '0 4px 14px rgba(255, 85, 0, 0.2)'
                 }}
+                className="btn-primary"
               >
-                (Get Started on WhatsApp)
+                <MessageCircle size={18} />
+                Get Started on WhatsApp
               </a>
               <a 
                 href="#contact" 
                 style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  backgroundColor: '#f1f1f3',
+                  border: '1px solid var(--border-color)',
                   color: 'var(--text-primary)',
-                  fontSize: '1rem',
-                  fontWeight: 700,
                   textTransform: 'uppercase',
+                  fontSize: '0.85rem',
+                  fontWeight: 700,
+                  letterSpacing: '0.05em',
+                  padding: '16px 28px',
+                  borderRadius: '10px',
                   textDecoration: 'none',
-                  letterSpacing: '0.05em'
+                  transition: 'all 0.3s ease'
                 }}
+                className="btn-secondary"
               >
-                (See Packages)
+                See Packages
               </a>
             </div>
 
-            {/* Trust line */}
-            <p style={{
-              fontFamily: 'var(--font-body)',
-              fontSize: '0.9rem',
-              color: 'var(--text-muted)',
-              maxWidth: '600px',
-              margin: '0 auto 10px auto',
+            {/* Trust checkmarks list */}
+            <div className="hero-animate hero-delay-4" style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              gap: '16px',
+              flexWrap: 'wrap',
+              fontSize: '0.82rem',
+              color: 'var(--text-secondary)',
+              marginTop: '8px',
+              marginBottom: '32px',
               fontWeight: 500
             }}>
-              Scope, price aur timeline sab likhit mein. Source code aur ownership poori aap ki.
-            </p>
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                <CheckCircle size={14} style={{ color: 'var(--accent-orange)' }} /> Conversion Focused
+              </span>
+              <span style={{ color: 'rgba(0,0,0,0.15)' }} className="desktop-nav">|</span>
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                <CheckCircle size={14} style={{ color: 'var(--accent-orange)' }} /> Modern & Responsive
+              </span>
+              <span style={{ color: 'rgba(0,0,0,0.15)' }} className="desktop-nav">|</span>
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                <CheckCircle size={14} style={{ color: 'var(--accent-orange)' }} /> Made for Pakistani Businesses
+              </span>
+            </div>
 
             {/* Scroll Indicator */}
             <div style={{ 
-              marginTop: '20px', 
+              marginTop: '36px', 
               fontSize: '0.75rem', 
               fontWeight: 700, 
               letterSpacing: '0.15em', 
@@ -334,7 +406,8 @@ export default function Home() {
               (Scroll Down & Explore)
             </div>
 
-          </div>          {/* Kyne Style Soft Peachy Orange Bottom Glow */}
+          </div>  
+          {/* Kyne Style Soft Peachy Orange Bottom Glow */}
           <div style={{
             position: 'absolute',
             bottom: '-150px',
@@ -403,11 +476,10 @@ export default function Home() {
               
               {/* Left Column (Sticky Heading Outer) */}
               <div style={{ position: 'sticky', top: '140px', zIndex: 2 }} className="niches-left-col">
-                {/* Inner Animated Wrapper */}
                 <div 
                   ref={nichesLeftRef}
                   style={{ 
-                    transition: 'transform 0.05s ease-out',
+                    transition: 'transform 0.1s ease-out',
                     willChange: 'transform'
                   }}
                 >
@@ -889,170 +961,100 @@ export default function Home() {
         </section>
 
         {/* SELECTED WORK SECTION */}
-        <section id="selected-work" style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.1)', background: 'linear-gradient(180deg, #030304 0%, #09090b 100%)' }}>
+        <section id="selected-work" style={{ borderBottom: '1px solid var(--border-color)', background: '#ffffff' }}>
           <div className="section-container">
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '30px' }}>
               <div>
                 <div className="badge" style={{ backgroundColor: 'rgba(255, 85, 0, 0.15)', color: '#ff661a', borderColor: 'rgba(255, 85, 0, 0.3)' }}>PORTFOLIO</div>
-                <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontWeight: 800, position: 'relative', color: '#ffffff' }}>
+                <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontWeight: 800, position: 'relative', color: 'var(--text-primary)' }}>
                   Checkout Our Portfolio<span style={{ color: 'var(--accent-orange)' }}>.</span>
                 </h2>
               </div>
             </div>
 
-            <div className="portfolio-grid" style={{
-              display: 'grid',
-              gap: '32px'
+            <div style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '64px',
+              marginTop: '40px'
             }}>
-              {/* Item 1 */}
-              <a href="https://www.faseehlall.com/" target="_blank" rel="noopener noreferrer" style={{ display: 'block', textDecoration: 'none' }} className="portfolio-link-card">
-                <div style={{
-                  borderRadius: '20px',
-                  overflow: 'hidden',
-                  border: '1px solid rgba(255, 255, 255, 0.1)',
-                  backgroundColor: '#121214',
-                  transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
-                  position: 'relative'
-                }} className="portfolio-card-inner">
-                  <div style={{ position: 'relative', width: '100%', height: '200px', overflow: 'hidden' }}>
-                    <img
-                      src="/faseehlall_mockup.png"
-                      alt="Faseeh Lall Mockup"
-                      style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }}
-                      className="portfolio-img"
-                    />
-                  </div>
-                  <div style={{ padding: '24px' }}>
-                    <h3 style={{ fontSize: '1.2rem', marginBottom: '8px', color: 'white' }}>Faseeh Lall</h3>
-                    <p style={{ fontSize: '0.85rem', color: 'rgba(255, 255, 255, 0.6)' }}>Premium Creative Portfolio & Agency Build</p>
-                  </div>
-                </div>
-              </a>
+              {portfolioItems.map((item, index) => {
+                const isEven = index % 2 === 1;
+                return (
+                  <div
+                    key={index}
+                    className="portfolio-item-row"
+                    style={{
+                      display: 'flex',
+                      flexDirection: isEven ? 'row-reverse' : 'row',
+                      alignItems: 'center',
+                      gap: '48px',
+                      justifyContent: 'space-between',
+                    }}
+                  >
+                    {/* Link Card holding image */}
+                    <a
+                      href={item.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ display: 'block', textDecoration: 'none', flex: '1.2', minWidth: '290px' }}
+                      className="portfolio-link-card"
+                    >
+                      <div
+                        style={{
+                          borderRadius: '20px',
+                          overflow: 'hidden',
+                          border: '1px solid var(--border-color)',
+                          backgroundColor: 'var(--bg-secondary)',
+                          boxShadow: '0 10px 30px rgba(0,0,0,0.05)',
+                          position: 'relative'
+                        }}
+                        className="portfolio-card-inner"
+                      >
+                        <div style={{ position: 'relative', width: '100%', height: '280px', overflow: 'hidden' }}>
+                          <img
+                            src={item.img}
+                            alt={`${item.title} Mockup`}
+                            style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }}
+                            className="portfolio-img"
+                          />
+                        </div>
+                      </div>
+                    </a>
 
-              {/* Item 2 */}
-              <a href="https://www.onlinequrancollege.com/" target="_blank" rel="noopener noreferrer" style={{ display: 'block', textDecoration: 'none' }} className="portfolio-link-card">
-                <div style={{
-                  borderRadius: '20px',
-                  overflow: 'hidden',
-                  border: '1px solid rgba(255, 255, 255, 0.1)',
-                  backgroundColor: '#121214',
-                  transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
-                  position: 'relative'
-                }} className="portfolio-card-inner">
-                  <div style={{ position: 'relative', width: '100%', height: '200px', overflow: 'hidden' }}>
-                    <img
-                      src="/quran_college_mockup.png"
-                      alt="Online Quran College Mockup"
-                      style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }}
-                      className="portfolio-img"
-                    />
+                    {/* Description Text */}
+                    <div style={{ flex: '1', minWidth: '290px', textAlign: 'left' }} className="portfolio-desc">
+                      <h3 style={{ fontSize: '2rem', marginBottom: '16px', color: 'var(--text-primary)', fontFamily: 'var(--font-headings)' }}>
+                        {item.title}
+                      </h3>
+                      <p style={{ fontSize: '1.1rem', color: 'var(--text-secondary)', lineHeight: '1.6', marginBottom: '24px' }}>
+                        {item.desc}
+                      </p>
+                      <a
+                        href={item.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn-secondary"
+                        style={{
+                          padding: '12px 24px',
+                          borderRadius: '8px',
+                          fontSize: '0.85rem',
+                          textDecoration: 'none',
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: '8px',
+                          border: '1px solid var(--border-color)',
+                          backgroundColor: 'rgba(0, 0, 0, 0.02)',
+                          color: 'var(--text-primary)',
+                          transition: 'all 0.3s ease'
+                        }}
+                      >
+                        Visit Website <ArrowRight size={16} />
+                      </a>
+                    </div>
                   </div>
-                  <div style={{ padding: '24px' }}>
-                    <h3 style={{ fontSize: '1.2rem', marginBottom: '8px', color: 'white' }}>Online Quran College</h3>
-                    <p style={{ fontSize: '0.85rem', color: 'rgba(255, 255, 255, 0.6)' }}>Clean Educational Portal & Student Dashboard</p>
-                  </div>
-                </div>
-              </a>
-
-              {/* Item 3 */}
-              <a href="https://unique-mineral.vercel.app/" target="_blank" rel="noopener noreferrer" style={{ display: 'block', textDecoration: 'none' }} className="portfolio-link-card">
-                <div style={{
-                  borderRadius: '20px',
-                  overflow: 'hidden',
-                  border: '1px solid rgba(255, 255, 255, 0.1)',
-                  backgroundColor: '#121214',
-                  transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
-                  position: 'relative'
-                }} className="portfolio-card-inner">
-                  <div style={{ position: 'relative', width: '100%', height: '200px', overflow: 'hidden' }}>
-                    <img
-                      src="/unique_mineral_mockup.png"
-                      alt="Unique Mineral Mockup"
-                      style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }}
-                      className="portfolio-img"
-                    />
-                  </div>
-                  <div style={{ padding: '24px' }}>
-                    <h3 style={{ fontSize: '1.2rem', marginBottom: '8px', color: 'white' }}>Unique Mineral</h3>
-                    <p style={{ fontSize: '0.85rem', color: 'rgba(255, 255, 255, 0.6)' }}>E-Commerce Showcase for Minerals & Marble Export</p>
-                  </div>
-                </div>
-              </a>
-
-              {/* Item 4 */}
-              <a href="https://1on1.unizconnect.com/" target="_blank" rel="noopener noreferrer" style={{ display: 'block', textDecoration: 'none' }} className="portfolio-link-card">
-                <div style={{
-                  borderRadius: '20px',
-                  overflow: 'hidden',
-                  border: '1px solid rgba(255, 255, 255, 0.1)',
-                  backgroundColor: '#121214',
-                  transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
-                  position: 'relative'
-                }} className="portfolio-card-inner">
-                  <div style={{ position: 'relative', width: '100%', height: '200px', overflow: 'hidden' }}>
-                    <img
-                      src="/unizconnect_mockup.png"
-                      alt="Unizconnect 1on1 Mockup"
-                      style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }}
-                      className="portfolio-img"
-                    />
-                  </div>
-                  <div style={{ padding: '24px' }}>
-                    <h3 style={{ fontSize: '1.2rem', marginBottom: '8px', color: 'white' }}>Unizconnect 1-on-1</h3>
-                    <p style={{ fontSize: '0.85rem', color: 'rgba(255, 255, 255, 0.6)' }}>High-Converting Interactive Mentoring Portal</p>
-                  </div>
-                </div>
-              </a>
-
-              {/* Item 5 */}
-              <a href="https://meet.zerox.agency/" target="_blank" rel="noopener noreferrer" style={{ display: 'block', textDecoration: 'none' }} className="portfolio-link-card">
-                <div style={{
-                  borderRadius: '20px',
-                  overflow: 'hidden',
-                  border: '1px solid rgba(255, 255, 255, 0.1)',
-                  backgroundColor: '#121214',
-                  transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
-                  position: 'relative'
-                }} className="portfolio-card-inner">
-                  <div style={{ position: 'relative', width: '100%', height: '200px', overflow: 'hidden' }}>
-                    <img
-                      src="/zerox_mockup.png"
-                      alt="ZeroX Agency Mockup"
-                      style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }}
-                      className="portfolio-img"
-                    />
-                  </div>
-                  <div style={{ padding: '24px' }}>
-                    <h3 style={{ fontSize: '1.2rem', marginBottom: '8px', color: 'white' }}>ZeroX Agency</h3>
-                    <p style={{ fontSize: '0.85rem', color: 'rgba(255, 255, 255, 0.6)' }}>Advanced AI Automation Systems & Scheduling Portal</p>
-                  </div>
-                </div>
-              </a>
-
-              {/* Item 6 */}
-              <a href="https://spreadpixel.com/" target="_blank" rel="noopener noreferrer" style={{ display: 'block', textDecoration: 'none' }} className="portfolio-link-card">
-                <div style={{
-                  borderRadius: '20px',
-                  overflow: 'hidden',
-                  border: '1px solid rgba(255, 255, 255, 0.1)',
-                  backgroundColor: '#121214',
-                  transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
-                  position: 'relative'
-                }} className="portfolio-card-inner">
-                  <div style={{ position: 'relative', width: '100%', height: '200px', overflow: 'hidden' }}>
-                    <img
-                      src="/spreadpixel_mockup.png"
-                      alt="SpreadPixel Mockup"
-                      style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }}
-                      className="portfolio-img"
-                    />
-                  </div>
-                  <div style={{ padding: '24px' }}>
-                    <h3 style={{ fontSize: '1.2rem', marginBottom: '8px', color: 'white' }}>SpreadPixel</h3>
-                    <p style={{ fontSize: '0.85rem', color: 'rgba(255, 255, 255, 0.6)' }}>Bold Creative Design & High-Impact Brand Showcase</p>
-                  </div>
-                </div>
-              </a>
+                );
+              })}
             </div>
           </div>
         </section>
@@ -1071,15 +1073,19 @@ export default function Home() {
               {faqData.map((item, index) => (
                 <div
                   key={index}
-                  className={`faq-item reveal-on-scroll ${openFaqIndex === index ? 'open' : ''}`}
+                  className="reveal-on-scroll"
                   style={{ transitionDelay: `${index * 50}ms` }}
                 >
-                  <button className="faq-question" onClick={() => toggleFaq(index)}>
-                    <span>{item.question}</span>
-                    <ChevronDown className="faq-icon" size={20} />
-                  </button>
-                  <div className="faq-answer">
-                    <p style={{ margin: 0, paddingBottom: '8px' }}>{item.answer}</p>
+                  <div
+                    className={`faq-item ${openFaqIndex === index ? 'open' : ''}`}
+                  >
+                    <button className="faq-question" onClick={() => toggleFaq(index)}>
+                      <span>{item.question}</span>
+                      <ChevronDown className="faq-icon" size={20} />
+                    </button>
+                    <div className="faq-answer">
+                      <p style={{ margin: 0, paddingBottom: '8px' }}>{item.answer}</p>
+                    </div>
                   </div>
                 </div>
               ))}
@@ -1218,6 +1224,13 @@ export default function Home() {
           }
           .desktop-nav {
             display: none !important;
+          }
+          .portfolio-item-row {
+            flex-direction: column !important;
+            gap: 24px !important;
+          }
+          .portfolio-desc {
+            text-align: center !important;
           }
         }
       `}</style>

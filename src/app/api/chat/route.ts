@@ -90,6 +90,6 @@ AI Response:`;
     }
   } catch (error) {
     console.error("Route error:", error);
-    return NextResponse.json({ reply: `JazakAllah ${userName || ''}! Please message us directly on WhatsApp (0331 6049421) to discuss your project!` });
+    return NextResponse.json({ reply: "JazakAllah! Please message us directly on WhatsApp (0331 6049421) to discuss your project!" });
   }
 }
