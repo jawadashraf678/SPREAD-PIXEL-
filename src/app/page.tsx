@@ -914,7 +914,7 @@ export default function Home() {
               gap: '40px',
               alignItems: 'center'
             }} className="why-us-grid">
-              <div>
+              <div className="why-us-left-col">
                 <div className="badge">Why Us</div>
                 <h2 style={{ fontSize: 'clamp(2rem, 3.5vw, 3rem)', marginBottom: '24px' }}>
                   Why Businesses Choose Us
@@ -1218,6 +1218,18 @@ export default function Home() {
         @media (max-width: 768px) {
           .why-us-grid {
             grid-template-columns: 1fr !important;
+          }
+          .why-us-left-col {
+            text-align: center !important;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+          }
+          .why-us-left-col .badge {
+            margin: 0 auto 12px auto !important;
+          }
+          .why-us-grid h3, .why-us-grid p {
+            text-align: left !important;
           }
           .form-grid {
             grid-template-columns: 1fr !important;
