@@ -9,20 +9,20 @@ const SPREADPIXELS_KNOWLEDGE_BASE = `
 - Mission: We build result-oriented, high-converting websites for Pakistani businesses (Clinics, Doctors, Real Estate, Manufacturers, Consultants, Brands, and Exporters) to generate actual customers and leads, not just visual decoration.
 
 ### PACKAGES & PRICING:
-1. Basic Package:
-   - Includes: Single Page Landing Page, Modern Responsive Design, Direct WhatsApp Call-to-Action buttons, Basic SEO Setup.
-   - Ideal for: Startups, freelancers, single service providers.
-2. Standard Package (SAB SE ZYADA LIYA JAANE WALA / Best Value):
-   - Includes: Multi-page Full Website, Custom UI/UX, WhatsApp Integration, Lead CRM Setup, Speed Optimization, Mid-tier Local SEO.
-   - Ideal for: Established Pakistani businesses, clinics, real estate agencies, manufacturers.
-3. Enterprise / Custom Package:
-   - Includes: Custom Web Application, Tailored Features, Advanced CRM & Automation, High-level SEO, Dedicated Support.
-   - Ideal for: Large companies, exporters, scale-ups.
+1. Basic Package (PKR 15,000):
+   - Includes: 4 to 5 pages, Full content writing, Contact form & WhatsApp integration, Custom graphics, Mobile optimized.
+   - Ideal for: Startups and new businesses getting online properly.
+2. Advance Package (PKR 28,500) (SAB SE ZYADA LIYA JAANE WALA / Best Value):
+   - Includes: 8 to 10 pages, Full content writing, WhatsApp integration, SEO keyword research, AI chatbot integration, Custom graphics, Mobile optimized.
+   - Ideal for: Growing businesses wanting steady leads from Google.
+3. Premium Package (PKR 40,000):
+   - Includes: 15+ pages, Full content writing, WhatsApp integration, CRM integration, SEO keyword research, AI chatbot, Custom graphics.
+   - Ideal for: Established businesses with multiple locations or services.
 
 ### TIMELINES:
-- Basic Landing Pages: 7 - 10 Days.
-- Standard / Corporate Websites: 2 - 3 Weeks.
-- Custom Enterprise Apps: 3 - 4 Weeks.
+- Basic Package: 1 - 2 Weeks.
+- Advance Package: 2 - 3 Weeks.
+- Premium Package: 3 - 4 Weeks.
 
 ### KEY ADVANTAGES:
 - Conversion-Focused Layouts: Designed to get WhatsApp messages and form enquiries.
@@ -43,10 +43,10 @@ export async function POST(req: Request) {
       const displayName = userName ? userName : "friend";
       
       if (lowerMsg.includes('price') || lowerMsg.includes('cost') || lowerMsg.includes('package') || lowerMsg.includes('rate') || lowerMsg.includes('kitnay')) {
-        return `Thank you ${displayName}! Humaray web design packages Basic Landing Page se shuru hotay hain. Standard Package sab se zyada popular hai jisme Full Website + WhatsApp CRM setup milta hai. Aap niche green button par click karke WhatsApp (0331 6049421) par direct details le saktay hain!`;
+        return `Thank you ${displayName}! Humaray web design packages:\n• Basic: PKR 15,000\n• Advance (Most Popular): PKR 28,500\n• Premium: PKR 40,000\nAap niche green button par click karke WhatsApp (0331 6049421) par direct details le saktay hain!`;
       }
       if (lowerMsg.includes('time') || lowerMsg.includes('duration') || lowerMsg.includes('day') || lowerMsg.includes('waqt') || lowerMsg.includes('din')) {
-        return `${displayName}, Basic landing page hum 7 se 10 din me deliver kar detay hain, aur standard business website me 2 se 3 weeks lagtay hain. Aap ka project kab tak delivery chahiye?`;
+        return `${displayName}, Basic package hum 1 se 2 weeks me deliver kar detay hain, Advance package me 2 se 3 weeks lagtay hain, aur Premium me final scope par depend karta hai. Aap ka project kab tak delivery chahiye?`;
       }
       if (lowerMsg.includes('portfolio') || lowerMsg.includes('work') || lowerMsg.includes('sample') || lowerMsg.includes('kaam')) {
         return `${displayName}, Hum ne Pakistan me Real Estate, Clinics, Exporters, aur Brands ke liye high-converting websites banayi hain. Aap website par Selected Work check karein ya WhatsApp par samples mangwaiye!`;

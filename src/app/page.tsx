@@ -113,7 +113,7 @@ export default function Home() {
   const faqData = [
     {
       question: "How long does it take?",
-      answer: "Basic takes around 2 weeks, Standard 3 to 4 weeks, and Premium depends on the final page count. The exact timeline is confirmed in your written scope."
+      answer: "Basic takes around 2 weeks, Advance 3 to 4 weeks, and Premium depends on the final page count. The exact timeline is confirmed in your written scope."
     },
     {
       question: "Do I have to provide the content?",
@@ -125,7 +125,7 @@ export default function Home() {
     },
     {
       question: "Will my website come on the first page of Google?",
-      answer: "Keyword research and clean site structure are the foundation of ranking, and both Standard and Premium include it. Competitive terms also need ongoing SEO work over several months. We will tell you upfront which of your terms are realistic and which are not. (Jhooti guarantee dene se behtar hai sach bata dena.)"
+      answer: "Keyword research and clean site structure are the foundation of ranking, and both Advance and Premium include it. Competitive terms also need ongoing SEO work over several months. We will tell you upfront which of your terms are realistic and which are not. (Jhooti guarantee dene se behtar hai sach bata dena.)"
     },
     {
       question: "Can you work with me if I am in another city?",
@@ -682,7 +682,7 @@ export default function Home() {
               {/* BASIC PACKAGE */}
               <div className="package-card reveal-slide-left">
                 <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)', fontWeight: 600, letterSpacing: '0.05em', textTransform: 'uppercase' }}>Basic</span>
-                <h3 style={{ fontSize: '1.75rem', margin: '8px 0 16px 0' }}>PKR 50,000</h3>
+                <h3 style={{ fontSize: '1.75rem', margin: '8px 0 16px 0' }}>PKR 15,000</h3>
                 <p style={{ fontSize: '0.95rem', color: 'var(--text-secondary)', marginBottom: '24px' }}>
                   <strong>Best for:</strong> New businesses getting online properly for the first time.
                 </p>
@@ -709,10 +709,10 @@ export default function Home() {
                 </a>
               </div>
 
-              {/* STANDARD PACKAGE */}
+              {/* ADVANCE PACKAGE */}
               <div className="package-card highlight reveal-zoom">
-                <span style={{ fontSize: '0.85rem', color: 'var(--accent-orange)', fontWeight: 700, letterSpacing: '0.05em', textTransform: 'uppercase' }}>Standard</span>
-                <h3 style={{ fontSize: '1.75rem', margin: '8px 0 16px 0' }}>PKR 75,000</h3>
+                <span style={{ fontSize: '0.85rem', color: 'var(--accent-orange)', fontWeight: 700, letterSpacing: '0.05em', textTransform: 'uppercase' }}>Advance</span>
+                <h3 style={{ fontSize: '1.75rem', margin: '8px 0 16px 0' }}>PKR 28,500</h3>
                 <p style={{ fontSize: '0.95rem', color: 'var(--text-secondary)', marginBottom: '24px' }}>
                   <strong>Best for:</strong> Businesses that want new customers coming in from Google, and every lead captured automatically.
                 </p>
@@ -735,14 +735,14 @@ export default function Home() {
                   className="btn-primary"
                   style={{ width: '100%' }}
                 >
-                  Go With Standard
+                  Go With Advance
                 </a>
               </div>
 
               {/* PREMIUM PACKAGE */}
               <div className="package-card reveal-slide-right">
                 <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)', fontWeight: 600, letterSpacing: '0.05em', textTransform: 'uppercase' }}>Premium</span>
-                <h3 style={{ fontSize: '1.75rem', margin: '8px 0 16px 0' }}>PKR 100,000</h3>
+                <h3 style={{ fontSize: '1.75rem', margin: '8px 0 16px 0' }}>PKR 40,000</h3>
                 <p style={{ fontSize: '0.95rem', color: 'var(--text-secondary)', marginBottom: '24px' }}>
                   <strong>Best for:</strong> Established businesses with a sales team, multiple services or multiple locations.
                 </p>
